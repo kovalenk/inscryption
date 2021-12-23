@@ -1,10 +1,18 @@
-<template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+<template lang="pug">
+main-layout
 </template>
+
+<script lang="ts">
+import {defineComponent} from 'vue';
+import MainLayout from '@/views/MainLayout.vue';
+
+export default defineComponent({
+  name: 'app-vue',
+  components: {
+    MainLayout,
+  },
+});
+</script>
 
 <style lang="scss">
 #app {
