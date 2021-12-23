@@ -1,7 +1,7 @@
 <template lang="pug">
 .intro
   .logo
-  h3 Нажмите на любую Кнопку
+  h3 {{$t('main_menu.press_any_key')}}
 </template>
 
 <script lang="ts">
