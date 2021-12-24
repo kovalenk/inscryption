@@ -1,5 +1,6 @@
 <template lang="pug">
 .intro
+  .background-effect
   h2
     | Inscr
     span Y
@@ -12,11 +13,10 @@ import {defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'start-screen',
-  data: () => ({
-    showLogo: true,
-  }),
   mounted() {
-    document.addEventListener('keypress', this.keypressEvent);
+    setTimeout(() => {
+      document.addEventListener('keypress', this.keypressEvent);
+    }, 3000);
   },
   beforeUnmount() {
     document.removeEventListener('keypress', this.keypressEvent);
@@ -30,132 +30,123 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.intro {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @import "~@/scss/animations/start-screen.scss";
 
-  width: 100%;
-  height: 100%;
-
-  background-color: #000;
-
-  h2 {
+  .intro {
     position: relative;
-    margin-bottom: 7vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    font-family: 'Fredericka the Great';
-    font-size: 140px;
-    letter-spacing: 8px;
-    text-transform: uppercase;
+    width: 100%;
+    height: 100%;
 
-    color: #00ffa2;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 75%);
+    background-color: #000;
 
-    animation-name: h1_presenting;
-    animation-duration: 1s;
+    animation-name: background_presenting;
+    animation-duration: .4s;
     animation-delay: 1.5s;
     animation-fill-mode: forwards;
 
-    @keyframes h1_presenting {
-      0% {
-        color: #00ffa2;
-        text-shadow: 0 0 30px rgba(255, 255, 255, 75%);
-      }
-      100% {
-        color: #ffe3cb;
-        text-shadow: 0 3px 1px #442000,
-        0 4px 1px #442000,
-        0 5px 1px #442000,
-        0 6px 1px #442000,
-        0 7px 1px #442000;
-      }
-    }
-
-    &::before {
-      content: '';
+    &::before, &::after {
       position: absolute;
-      left: -5%;
-      top: -10px;
-      width: 110%;
-      height: 180px;
-      background-color: black;
-      animation-name: lazy-loading;
-      animation-fill-mode: forwards;
-      animation-duration: 1.5s;
+      top: 31vh;
+      left: -400px;
+      content: '';
 
-      @keyframes lazy-loading {
-        0% {
-          left: -5%;
-          width: 110%;
-        }
-        100% {
-          left: 49%;
-          width: 0;
-        }
-      }
-    }
+      width: 420px;
+      height: 70px;
 
-    span {
-      position: relative;
-      top: -400px;
+      background-image: url('~@/assets/left-title-arrow.svg');
+      background-repeat: no-repeat;
+      background-size: 393px 35px;
 
-      margin: 0 12px;
-      font-size: 145px;
-
-      animation-name: span-droping;
       animation-duration: .4s;
       animation-delay: 1.2s;
       animation-fill-mode: forwards;
+      animation-name: show-left-arrow;
+    }
 
-      @keyframes span-droping {
-        0% {
-          top: -400px;
-        }
-        100% {
-          top: 12px;
-        }
+    &::after {
+      left: unset;
+      right: -370px;
+      transform: scale(-1, 1);
+      animation-name: show-right-arrow;
+    }
+
+    .background-effect {
+      position: absolute;
+      opacity: 0.3;
+      z-index: -4;
+
+      width: 100%;
+      height: 100%;
+
+      background-image: url("~@/assets/monitor_pattern.png");
+      animation-name: add-background-effect;
+      animation-duration: .4s;
+      animation-delay: 1.5s;
+      animation-fill-mode: forwards;
+    }
+
+    h2 {
+      position: relative;
+      margin-bottom: 7vh;
+
+      font-family: $font_family_fredericka;
+      font-size: 140px;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+
+      color: #00ffa2;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 75%);
+
+      animation-name: h1_presenting;
+      animation-duration: 1s;
+      animation-delay: 1.5s;
+      animation-fill-mode: forwards;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -5%;
+        top: -10px;
+        width: 110%;
+        height: 180px;
+        background-color: black;
+        animation-name: lazy-loading;
+        animation-fill-mode: forwards;
+        animation-duration: 1.5s;
+      }
+
+      span {
+        position: relative;
+        top: -400px;
+
+        margin: 0 12px;
+        font-size: 145px;
+
+        animation-name: span-dropping;
+        animation-duration: .4s;
+        animation-delay: 1.2s;
+        animation-fill-mode: forwards;
       }
     }
-  }
 
-  h3 {
-    margin-bottom: 28vh;
+    h3 {
+      margin-bottom: 28vh;
 
-    font-family: 'Press Start 2P';
-    font-size: 28px;
-    text-transform: uppercase;
-    opacity: 0;
-    color: black;
+      font-family: $font_family_press_start;
+      font-size: 28px;
+      text-transform: uppercase;
+      opacity: 0;
+      color: black;
 
-    animation-name: opacity_looping;
-    animation-iteration-count: infinite;
-    animation-duration: 2s;
-    animation-delay: 2.8s;
-
-    @keyframes opacity_looping {
-      0%, 25%, 50% {
-        opacity: 1;
-      }
-      51%, 75%, 100% {
-        opacity: .3;
-      }
+      animation-name: opacity_looping;
+      animation-iteration-count: infinite;
+      animation-duration: 2s;
+      animation-delay: 2.8s;
     }
   }
-
-  animation-name: background_presenting;
-  animation-duration: 1s;
-  animation-delay: 1.5s;
-  animation-fill-mode: forwards;
-
-  @keyframes background_presenting {
-    0% {
-      background-color: #000000;
-    }
-    100% {
-      background-color: #a26939;
-    }
-  }
-}
 </style>

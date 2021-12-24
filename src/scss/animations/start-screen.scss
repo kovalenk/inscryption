@@ -1,0 +1,79 @@
+@keyframes show-left-arrow {
+  0% {
+    left: -400px;
+  }
+  100% {
+    left: -81px;
+  }
+}
+
+@keyframes show-right-arrow {
+  0% {
+    right: -370px;
+  }
+  100% {
+    right: -70px;
+  }
+}
+
+@keyframes add-background-effect {
+  0% {
+    z-index: -4;
+  }
+  100% {
+    z-index: 1;
+  }
+}
+
+@keyframes h1_presenting {
+  0% {
+    color: #00ffa2;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 75%);
+  }
+  100% {
+    color: #dadacb;
+    text-shadow: 0 3px 1px #442000,
+    0 4px 1px #442000,
+    0 5px 1px #442000,
+    0 6px 1px #442000,
+    0 7px 1px #442000;
+  }
+}
+
+@keyframes lazy-loading {
+  0% {
+    left: -5%;
+    width: 110%;
+  }
+  100% {
+    left: 49%;
+    width: 0;
+  }
+}
+
+@keyframes span-dropping {
+  0% {
+    top: -400px;
+  }
+  100% {
+    top: 12px;
+  }
+}
+
+@keyframes opacity_looping {
+  0%, 25%, 50% {
+    opacity: 1;
+  }
+  51%, 75%, 100% {
+    opacity: .3;
+  }
+}
+
+@keyframes background_presenting {
+  0% {
+    background-color: #000000;
+  }
+  100% {
+    background-color: #a26939;
+  }
+}
